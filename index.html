@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChartJS</title>
+</head>
+<body>
+  <canvas id="chart"></canvas>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+  <script type="module">
+    import {data, pink} from './app.js'
+    const dataChart = (param) => {
+      const myChart = new Chart(param , {
+        type: 'bar',
+        data: {
+          labels: data.map((item) => item.label),
+          datasets: [
+            {
+            label: "A",
+            data: pink.map((item) => item.value),
+            backgroundColor: 'rgb(255, 99, 132)',
+            },
+            {
+            label: "B",
+            data: [10, 30, 35, 22, 23, 24, 25, 11, 12, 13,150, 160, 170, 180, 14, 15, 16, 17, 18, 19, 20, 21, 10, 70, 80, 90, 100,],
+            backgroundColor: 'rgb(100, 155, 255)',
+            },
+            {
+            label: "C",
+            data: data.map((item) => item.value),
+            backgroundColor: 'rgb(50, 255, 200)',
+            }
+        ]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+            title: {
+              display: true,
+              text: 'Ejercicio Asesoria ChartJS'
+            }
+          }
+        }
+      })
+    } 
+
+    const renderChart = () => {
+      const context = document.getElementById('chart').getContext('2d')
+      //Funcion que crea el grafico
+      dataChart(context)
+    }
+    renderChart()
+  </script>
+</body>
+</html>
